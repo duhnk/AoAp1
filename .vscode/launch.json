@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/frankie/Desktop/Analysis of Algorithms/AoAp1-1",
+      "program": "/Users/frankie/Desktop/Analysis of Algorithms/AoAp1-1/build/Debug/outDebug"
+    }
+  ]
+}
