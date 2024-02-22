@@ -95,7 +95,7 @@ void quicksort(int nums [], int size, int first, int last){
 	}
 }
 
-//Finds max in pointer
+//Finds max in pointer array
 float max(float *arr, int size)
 {
 	if (arr == NULL)
@@ -126,7 +126,7 @@ float min(float *arr, int size)
 	}
 	float curr = arr[0];
 	int i = 0;
-	for ( ; i < size; i++)
+	for ( ; i < size; i++)//O(n)
 	{
 		if (curr > arr[i])
 		{
@@ -137,7 +137,7 @@ float min(float *arr, int size)
 	return curr;
 }
 
-
+//Determines the profit of sell-buy
 float buysell(float L, float R)
 {
 	float buy = L, sell = R;
@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
 	float *startarr;
 	startarr =(float*) malloc(size * sizeof(float));
 
-	if (startarr==NULL) {
+	if (startarr == NULL) {
 	printf("No memory available");
 	}	
 
