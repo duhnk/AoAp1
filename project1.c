@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 /*
-This is the main file
+This Project is directed on using a divide and conquer method on a stock 
+finding the most optimal buy and sell day for a list of prices
+
 @author Zelig Garza
 @author Katherine Raguini
 */
@@ -24,19 +26,12 @@ void merge(int nums [], int left, int mid, int right){
         R[j] = nums[mid + 1 + j];
  
     // Merge the temp arrays back into arr[l..r]
+	//TO DO edit this to search through array
     i = 0;
     j = 0;
     k = left;
     while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            nums[k] = L[i];
-            i++;
-        }
-        else {
-            nums[k] = R[j];
-            j++;
-        }
-        k++;
+       //Write the comparision
     }
  
     // Copy the remaining elements of L[],
@@ -100,6 +95,7 @@ void quicksort(int nums [], int size, int first, int last){
 	}
 }
 
+//Finds max in pointer
 float max(float *arr, int size)
 {
 	if (arr == NULL)
@@ -119,6 +115,8 @@ float max(float *arr, int size)
 
 	return curr;
 }
+
+//Finds min in array
 float min(float *arr, int size)
 {
 	if (arr == NULL)
@@ -142,13 +140,15 @@ float min(float *arr, int size)
 
 float buysell(float L, float R)
 {
-	float buy = L,sell = R;
+	float buy = L, sell = R;
 	float profit = 0.0;
 	if(buy == sell)
 		return buy;
 	profit = sell - buy;
 return profit;	
 }
+
+//Main Driver
 int main(int argc, char *argv[])
 {
 	char *inputfile = "";
@@ -171,18 +171,20 @@ int main(int argc, char *argv[])
 			return 1;
 	}
 
+	//Reads File
 	inputfile = argv[1];
 	if ((senor = fopen(inputfile,"r")) == NULL){
-			printf("Program cannot open the file\n");
-			return -1; /* exit program */
-			}
+		printf("Program cannot open the file\n");
+		return -1; /* exit program */
+	}
 	printf("outside loop\n");	
+
+	//Iterates and reallocates for more memory
 	while(fscanf(senor,"%f",&startarr[num_read]) != EOF){
 		num_read++;
 
 		/* check size of array */
-		if (num_read == size)
-		{
+		if (num_read == size) {
 			printf("inside array size\n");	
 			size *= 2;
 			/*realloc size of array to new capacity */
@@ -204,24 +206,32 @@ int main(int argc, char *argv[])
 		printf("the start array: %f\n",startarr[4]);
 		printf("the start array: %f\n",startarr[5]);
 	*/
-		if (num_read <= 1) return -1;	
-		int n1 = num_read/2; 
-		int n2 = num_read/2;
-		if(num_read%2 != 0) n2++;
-		float *v1 = malloc(n1*sizeof(float)); /* float v1[n1] array */
-		float *v2 = malloc(n2*sizeof(float)); /* float v2[n2] array */
-		int i = 0;
-		for (; i < num_read; i++)
+
+
+	if (num_read <= 1) return -1;	
+	int n1 = num_read/2; 
+	int n2 = num_read/2;
+
+	//Adds more space to n2 if num_read is odd
+	if(num_read % 2 != 0) n2++;
+
+	//Allocates space for each pointer
+	float *v1 = malloc(n1*sizeof(float)); /* float v1[n1] array */
+	float *v2 = malloc(n2*sizeof(float)); /* float v2[n2] array */
+
+	//Divides array in two
+	int i = 0;
+	for (; i < num_read; i++)
+	{
+		if (i < n1)
 		{
-			if (i < n1)
-			{
-				v1[i] = startarr[i];
-			}
-			else
-			{
-				v2[i-n1] = startarr[i];
-			}
+			v1[i] = startarr[i];
 		}
+		else
+		{
+			v2[i-n1] = startarr[i];
+		}
+	}
 
 		/*
 		printf("the v1 array: %f\n",v1[0]);
@@ -251,7 +261,7 @@ int main(int argc, char *argv[])
 	free(v2);
 	free(startarr);
 	fclose(senor);
-return 0;
+	return 0;
 }
 
 	
