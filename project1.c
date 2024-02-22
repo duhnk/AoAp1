@@ -41,7 +41,55 @@ void quicksort(int nums [], int size, int first, int last){
 	}
 }
 
+float max(float *arr, int size)
+{
+	if (arr == NULL)
+	{
+		printf("No array!\n");
+		return -1;
+	}
+	float curr = arr[0];
+	int i = 0;
+	for ( ; i < size; i++)
+	{
+		if (curr < arr[i])
+		{
+			curr = arr[i];
+		}
+	}
 
+	return curr;
+}
+float min(float *arr, int size)
+{
+	if (arr == NULL)
+	{
+		printf("No array!\n");
+		return -1;
+	}
+	float curr = arr[0];
+	int i = 0;
+	for ( ; i < size; i++)
+	{
+		if (curr > arr[i])
+		{
+			curr = arr[i];
+		}
+	}
+
+	return curr;
+}
+
+
+float buysell(float L, float R)
+{
+	float buy = L,sell = R;
+	float profit = 0.0;
+	if(buy == sell)
+		return buy;
+	profit = sell - buy;
+return profit;	
+}
 int main(int argc, char *argv[])
 {
 	char *inputfile = "";
@@ -124,7 +172,21 @@ int main(int argc, char *argv[])
 		printf("the v2 array: %f\n",v2[1]);
 		printf("the v2 array: %f\n",v2[2]);
 		*/
+	float newmaxL = max(v1,n1);
+	float newmaxR = max(v2,n2);	
+/*
+	printf("max for left array %f\n", newmaxL);
+	printf("max for right array %f\n", newmaxR);
+*/
 
+	float newminL = min(v1,n1);
+	float newminR = min(v2,n2);	
+	float profit = buysell(newminL,newmaxR);	
+/*
+	printf("min for left array %f\n", newminL);
+	printf("min for right array %f\n", newminR);
+*/
+	printf("Profit for our buying and sell of %s dollars: %f\n",inputfile, profit);
 
 	free(v1);
 	free(v2);
