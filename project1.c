@@ -66,7 +66,7 @@ float min(float *arr, int size)
 float sort(float vec[], int n){
 
 	float profit1,profit2,profit3;
-	if (n <= 1) return;	
+	if (n <= 1) return -1;	
 	int n1 = n/2; 
 	int n2 = n/2;
 
@@ -116,18 +116,6 @@ float sort(float vec[], int n){
 	float maxL = max(v1,n1);
 	float minR = min(v2,n2);
 	float maxR = max(v2,n2);
-	float *minAL = &minL;
-	float *maxAL = &maxL;
-	float *minAR = &minR;
-	float *maxAR = &maxR;
-/*
-	if(&minAR < &maxAR )
-		printf("TRUE\n");
-	else
-		printf("FALSE\n");
-	if(&maxAL < &maxAR)
-		printf("TRUE\n");
-*/
 
 	printf("minL = %.2f maxL = %.2f minR = %.2f maxR = %.2f\n",minL,maxL,minR,maxR);
 	printf("iminL = %d imaxL = %d iminR = %d imaxR = %d\n",iminL,imaxL,iminR,imaxR);
@@ -141,6 +129,8 @@ float sort(float vec[], int n){
 
 	if ( profit1 < profit3 && (iminR > imaxR))
 		return profit1;
+	else if (profit2 > profit1)
+		return profit2;
 	else if (profit1 > profit3)
 	      return profit1;
 	else
@@ -167,7 +157,6 @@ int main(int argc, char *argv[])
 {
 	char *inputfile = "";
 	FILE *senor;
-	float price1 = 0.0;
 
 	int size = 10;
 	int num_read = 0;
