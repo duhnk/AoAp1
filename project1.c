@@ -9,6 +9,7 @@ finding the most optimal buy and sell day for a list of prices
 @author Katherine Raguini
 */
 
+<<<<<<< HEAD
 //Finds max in pointer
 float buysell(float L, float R)
 {
@@ -23,6 +24,10 @@ return profit;
 
 float max(float *arr, int size)
 {
+=======
+//Finds max in pointer array
+float max(float *arr, int size) {
+>>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 	if (arr == NULL)
 	{
 		printf("No array!\n");
@@ -51,7 +56,7 @@ float min(float *arr, int size)
 	}
 	float curr = arr[0];
 	int i = 0;
-	for ( ; i < size; i++)
+	for ( ; i < size; i++)//O(n)
 	{
 		if (curr > arr[i])
 		{
@@ -63,6 +68,7 @@ float min(float *arr, int size)
 }
 float sort(float vec[], int n){
 
+<<<<<<< HEAD
 	float profit1,profit2,profit3;
 	if (n <= 1) return;	
 	int n1 = n/2; 
@@ -145,6 +151,9 @@ float sort(float vec[], int n){
 	free(v1); free(v2);
 }
 /*
+=======
+//Determines the profit of sell-buy
+>>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 float buysell(float L, float R)
 {
 	float buy = L, sell = R;
@@ -167,7 +176,7 @@ int main(int argc, char *argv[])
 	float *startarr;
 	startarr =(float*) malloc(size * sizeof(float));
 
-	if (startarr==NULL) {
+	if (startarr == NULL) {
 	printf("No memory available");
 	}	
 
@@ -262,7 +271,11 @@ int main(int argc, char *argv[])
 	printf("min for left array %f\n", newminL);
 	printf("min for right array %f\n", newminR);
 */
+<<<<<<< HEAD
 	printf("Profit for our buying and sell of %s dollars: %.2f\n",inputfile, index);
+=======
+	printf("Profit for our buying and sell of %s dollars: %.2f\n",inputfile, profit);
+>>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 
 	free(startarr);
 	fclose(senor);
