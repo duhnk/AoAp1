@@ -9,7 +9,6 @@ finding the most optimal buy and sell day for a list of prices
 @author Katherine Raguini
 */
 
-<<<<<<< HEAD
 //Finds max in pointer
 float buysell(float L, float R)
 {
@@ -22,12 +21,9 @@ float buysell(float L, float R)
 return profit;	
 }
 
-float max(float *arr, int size)
-{
-=======
+
 //Finds max in pointer array
 float max(float *arr, int size) {
->>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 	if (arr == NULL)
 	{
 		printf("No array!\n");
@@ -66,9 +62,9 @@ float min(float *arr, int size)
 
 	return curr;
 }
+
 float sort(float vec[], int n){
 
-<<<<<<< HEAD
 	float profit1,profit2,profit3;
 	if (n <= 1) return;	
 	int n1 = n/2; 
@@ -124,12 +120,14 @@ float sort(float vec[], int n){
 	float *maxAL = &maxL;
 	float *minAR = &minR;
 	float *maxAR = &maxR;
+/*
 	if(&minAR < &maxAR )
 		printf("TRUE\n");
 	else
 		printf("FALSE\n");
 	if(&maxAL < &maxAR)
 		printf("TRUE\n");
+*/
 
 	printf("minL = %.2f maxL = %.2f minR = %.2f maxR = %.2f\n",minL,maxL,minR,maxR);
 	printf("iminL = %d imaxL = %d iminR = %d imaxR = %d\n",iminL,imaxL,iminR,imaxR);
@@ -141,7 +139,7 @@ float sort(float vec[], int n){
 	printf("profit1 = %.2f profit2 = %.2f profit3 = %.2f\n",profit1,profit2,profit3);
 	printf("sortL = %.2f sortR = %.2f \n",sortL,sortR);
 
-	if ( profit1 < profit3 && (&minAR < &maxAR))
+	if ( profit1 < profit3 && (iminR > imaxR))
 		return profit1;
 	else if (profit1 > profit3)
 	      return profit1;
@@ -150,10 +148,9 @@ float sort(float vec[], int n){
 
 	free(v1); free(v2);
 }
+
 /*
-=======
 //Determines the profit of sell-buy
->>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 float buysell(float L, float R)
 {
 	float buy = L, sell = R;
@@ -164,6 +161,7 @@ float buysell(float L, float R)
 return profit;	
 }
 */
+
 //Main Driver
 int main(int argc, char *argv[])
 {
@@ -271,11 +269,7 @@ int main(int argc, char *argv[])
 	printf("min for left array %f\n", newminL);
 	printf("min for right array %f\n", newminR);
 */
-<<<<<<< HEAD
 	printf("Profit for our buying and sell of %s dollars: %.2f\n",inputfile, index);
-=======
-	printf("Profit for our buying and sell of %s dollars: %.2f\n",inputfile, profit);
->>>>>>> 18037d2c9ed4b37fdbf0fd91778a1cd47eb995e1
 
 	free(startarr);
 	fclose(senor);
