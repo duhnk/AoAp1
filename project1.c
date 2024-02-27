@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <float.h>
 /*
 This Project is directed on using a divide and conquer method on a stock 
 finding the most optimal buy and sell day for a list of prices
@@ -54,18 +55,36 @@ float min(float *arr, int size)
 }
 //Finds max in pointer
 
-float buysell(float L, float R)
+float buysell(float L[], int size)
 {
+	int n1 = size/2; 
+	int n2 = size/2;
+	//Adds more space to n2 if num_read is odd
+	if(size % 2 != 0) n2++;
 
-	float buy = L , sell  = R;
+	float *buy = malloc(n1 * sizeof(float));  
+	float *sell  =	malloc(n2 * sizeof(float)); 
 	float profit = 0.0;
-	if(buy == sell)
-		return buy;
-	profit = sell - buy;
-
-return profit;	
+	if(size <= 2)
+		return 0;
+	int ndx = 0;
+	for (; ndx < size; ndx++)
+	{
+		if (ndx < n1)
+		{
+			buy[ndx] = L[ndx];
+		}
+		else
+		{
+			sell[ndx-n1] = L[ndx];
+		}
+	}
+	float minL = min(buy,n1);
+	float maxR = max(sell,n2);
+	profit = maxR - minL;	
+return profit ;	
 }
-
+/*
 float sort(float vec[], int n){
 
 	float profit = 0.0,profit1 = 0.0 , profit2 = 0.0;
@@ -124,7 +143,55 @@ float sort(float vec[], int n){
 	free(v1); free(v2);
 }
 
+*/
+float maxSubArray(float center[], int size)
+{
+	int n = size;
+	float leftSum = 0.0;
+	float rightSum = 0.0;
+	float centerSum = 0.0;
+	int n1 = n/2; 
+	int n2 = n/2;
+	//Adds more space to n2 if num_read is odd
+	if(n % 2 != 0) n2++;
 
+	//Allocates space for each pointer
+	float *v1 = malloc(n1*sizeof(float)); 
+	float *v2 = malloc(n2*sizeof(float)); 
+	if (n  <= 3){
+		leftSum = buysell(v1,n1);
+		rightSum = buysell(v2,n2);
+		centerSum = buysell(center,n);
+		return centerSum;
+	}	
+	
+	//Divides array in two
+	int ndx = 0;
+	for (; ndx < n; ndx++)
+	{
+		if (ndx < n1)
+		{
+			v1[ndx] = center[ndx];
+		}
+		else
+		{
+			v2[ndx-n1] = center[ndx];
+		}
+	}
+	
+	 maxSubArray(v1,n1);
+	 maxSubArray(v2,n2);
+	leftSum = buysell(v1,n1);
+	rightSum = buysell(v2,n2);
+	centerSum = buysell(center,n);
+	if (centerSum > rightSum)
+		return centerSum;
+	else if(leftSum > rightSum)
+		return leftSum;
+	else
+		return rightSum;
+	n--;	
+}
 //Main Driver
 int main(int argc, char *argv[])
 {
@@ -151,7 +218,6 @@ int main(int argc, char *argv[])
 		printf("Program cannot open the file\n");
 		return -1; /* exit program */
 	}
-	printf("outside loop\n");	
 
 	//Iterates and reallocates for more memory
 	while(fscanf(senor,"%f",&startarr[num_read]) != EOF){
@@ -169,7 +235,10 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	float index = sort(startarr,num_read);
+	float index = maxSubArray(startarr,num_read);
+	//float index = sort(startarr,num_read);
+	//printf("max subarray indices: %d, %d\n",maxlow,maxhigh);
+	//printf("max subarray sum: %d\n",maxsum);	
 	printf("Profit for our buying and sell of %s dollars: %.2f\n",inputfile, index);
 
 	free(startarr);
